@@ -1,0 +1,52 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-advanced-reader.ss" "lang")((modname |punto 29|) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #t #t none #f () #f)))
+;escribir un programa que imprima una tabla con los números que hay entre dos números leídos.
+;Frente a cada número debe aparecer su cuadrado, su cubo, su raíz cuadrada y su raíz cúbica.
+
+(define (lista m n )
+  (cond( (> m (+ 1 n))
+         (begin
+           (display (- m 1))
+           (display "      |    ")
+           (display (expt (- m 1)2 ))
+           (display "    |    ")
+           (display (expt (- m 1)3))
+           (display "     |       ")
+           (display (expt (- m 1) (/ 1 2)))
+           (display "     |   ")
+           (display (expt (- m 1) (/ 1 3)))
+           (display "     |    ")
+         (lista (- m 1) n )
+         )
+      )
+      ((> n (+ 1 m))
+            (begin
+           (display (- n 1))
+           (display "      |    ")
+           (display (expt (- n 1)2 ))
+           (display "    |    ")
+           (display (expt (- n 1)3))
+           (display "     |     ")
+           (display (expt (- n 1) (/ 1 2)))
+           (display "     |     ")
+           (display (expt (- n 1) (/ 1 3)))
+           (display "     | ")
+           (newline)
+         (lista m (- n 1))
+         )
+            )
+          (else (begin(display "fin")(newline)))
+          )
+      )
+  
+;llamado
+(display "ingrese el primer numero ")
+(define num1 (read))
+(newline)
+(display "ingres el segundo numero ")
+(define num2 (read))
+(newline)
+(display "numero   cuadrado      cubo            raiz cuadrada               raiz cubica")
+(newline)
+(lista num1 num2 )
