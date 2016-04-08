@@ -1,0 +1,11 @@
+(define cadena (string #\H #\O #\L #\A))
+(define (inv x)
+  (if (< 0 x)
+       (begin
+         (display (string-ref cadena x))
+         (inv (- x 1))
+         )
+       (display (string-ref cadena x))
+       )
+   )
+  (inv (- (string-length cadena) 1))
